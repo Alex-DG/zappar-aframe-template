@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zappar A-Frame Demo</title>
+
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
+
+    <script src="https://libs.zappar.com/zappar-aframe/3.1.0/zappar-aframe.js"></script>
+  </head>
+  <body>
+    <a-scene tap-place>
+      <!-- Assets -->
+      <a-assets>
+        <!-- Preload your glb here -->
+        <a-asset-item id="wavingModel" src="/models/waving.glb"> </a-asset-item>
+      </a-assets>
+
+      <!-- Ask user for camera permissions, display some text if permission is denied -->
+      <a-entity zappar-permissions-ui id="permissions"></a-entity>
+      <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
+      <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
+
+      <a-camera id="camera" zappar-camera />
+
+      <a-light type="ambient" intensity="0.5"></a-light>
+
+      <a-entity zappar-instant="placement-mode: true" id="instant-group">
+        <a-entity
+          id="dirLight1"
+          light="
+            type: directional;
+            intensity: 0.5;
+            castShadow: true;
+            shadowMapHeight: 2048;
+            shadowMapWidth: 2048;
+            shadowCameraTop: 20;
+            shadowCameraBottom: -20;
+            shadowCameraRight: 20;
+            shadowCameraLeft: -20;
+            target: #model"
+          position="4 8 4"
+          shadow
+        ></a-entity>
+
+        <a-entity
+          id="dirLight2"
+          light="
+            type: directional;
+            intensity: 0.7;
+            target: #model"
+          position="4 8 -4"
+        ></a-entity>
+
+        <a-entity
+          id="model"
+          gltf-model="#wavingModel"
+          animation-mixer="clip: *; loop: repeat; timeScale: 0"
+          shadow="cast: true; receive: false"
+        ></a-entity>
+
+        <a-box
+          id="ground"
+          class="cantap"
+          scale="1000 2 1000"
+          position="0 -1 0"
+          material="shader: shadow; transparent: true; opacity: 0.4"
+          shadow="receive: true; cast: false"
+        >
+        </a-box>
+      </a-entity>
+    </a-scene>
+
+    <!-- Some UI for the user to tap to indicate they're happy with the placement -->
+    <div id="zappar-placement-ui">Tap here to place the object</div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
