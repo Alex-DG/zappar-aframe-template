@@ -12,6 +12,7 @@ const htmlPlugin = (env) => {
 
 export default defineConfig(({ mode }) => {
   return {
+    base: './',
     plugins: [basicSsl(), htmlPlugin(loadEnv(mode, '.'))],
     assetsInclude: [
       '**/*.glb',
