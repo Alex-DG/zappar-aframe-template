@@ -26,11 +26,12 @@
 
     <a-camera id="camera" zappar-camera />
 
-    <a-light type="ambient" intensity="0.5"></a-light>
+    <a-light type="ambient" intensity="0.6"></a-light>
 
-    <a-entity light="
+    <a-entity zappar-instant="placement-mode: true" id="instant-group">
+      <a-entity light="
             type: directional;
-            intensity: 1.0;
+            intensity: 1.2;
             castShadow: true;
             shadowMapHeight: 2048;
             shadowMapWidth: 2048;
@@ -40,7 +41,6 @@
             shadowCameraLeft: -20;
             target: #model" position="4 8 4" shadow></a-entity>
 
-    <a-entity zappar-instant="placement-mode: true" id="instant-group">
       <a-entity id="model" gltf-model="#wavingModel" animation-mixer="clip: *; loop: repeat; timeScale: 0"
         shadow="cast: true; receive: false"></a-entity>
 
