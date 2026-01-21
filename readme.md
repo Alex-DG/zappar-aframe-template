@@ -2,7 +2,7 @@
 
 ## Description
 
-- Minimal reusable template project: Zappar + A-Frame made with viteJS⚡
+- Minimal reusable template project: Zappar Universal AR SDK + A-Frame made with viteJS⚡
 - [Zappar Universal AR SDK + Three.js Template](https://github.com/Alex-DG/zappar-aframe-template)
 
 <p align="center">
